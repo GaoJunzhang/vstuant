@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <!-- start: Meta -->
+    <meta charset="utf-8">
+    <title>VR监控平台</title>
+    <meta name="description" content="Bootstrap Metro Dashboard">
+    <meta name="author" content="Dennis Ji">
+    <meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+    <!-- end: Meta -->
+
+    <!-- start: Mobile Specific -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- end: Mobile Specific -->
+
+    <!-- start: CSS -->
+    <link id="bootstrap-style" th:href="@{/css/bootstrapnew.min.css}" rel="stylesheet">
+    <!-- <link href="css/bootstrap-responsive.min.css" rel="stylesheet"> -->
+    <link id="base-style" th:href="@{/css/style.css}" rel="stylesheet">
+    <link th:href="@{/css/halflings.css}" rel="stylesheet">
+    <!-- <link id="base-style-responsive" href="css/style-responsive.css" rel="stylesheet"> -->
+    <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'> -->
+    <!-- end: CSS -->
+
+    <link rel="shortcut icon" th:href="@{/img/favicon.ico}">
+
+    <style type="text/css">
+        body { background: url(img/bg-login.jpg) !important; }
+    </style>
+
+
+
+</head>
+
+<body>
+<div class="container-fluid-full">
+    <div class="row-fluid">
+
+        <div class="row-fluid">
+            <div class="login-box">
+                <div class="icons">
+                    <a href="/"><i class="halflings-icon home"></i></a>
+                    <a href="/"><i class="halflings-icon cog"></i></a>
+                </div>
+                <h2>欢迎登录</h2>
+                <form class="form-horizontal" th:action="@{/login}" action="" method="post">
+                    <fieldset>
+
+                        <div class="input-prepend" title="账号">
+                            <span class="add-on"><i class="halflings-icon user"></i></span>
+                            <input class="input-large span10" name="username" id="username" type="text" placeholder="账号"/>
+                        </div>
+                        <div class="clearfix"></div>
+
+                        <div class="input-prepend" title="密码">
+                            <span class="add-on"><i class="halflings-icon lock"></i></span>
+                            <input class="input-large span10" name="password" id="password" type="password" placeholder="密码"/>
+                        </div>
+                        <div class="clearfix"></div>
+                        <span th:text="${msg}"></span>
+
+                        <!-- <label class="remember" for="remember"><input type="checkbox" id="remember" />Remember me</label> -->
+
+                        <div class="button-login">
+                            <button type="submit" class="btn btn-primary">登录</button>
+                        </div>
+                        <div class="clearfix"></div>
+                </form>
+                <hr>
+                <!-- <h3>Forgot Password?</h3>
+                <p>
+                    No problem, <a href="#">click here</a> to get a new password.
+                </p> -->
+            </div><!--/span-->
+        </div><!--/row-->
+
+
+    </div><!--/.fluid-container-->
+
+</div><!--/fluid-row-->
+<script type="text/javascript" th:src="@{/js/jquery-1.11.2.min.js}"></script>
+<script>
+    $("#loginform").keypress(function(e) {
+
+        if (e.which == 13) {
+            $("#loginform").submit();
+        }
+    });
+</script>
+</body>
+</html>

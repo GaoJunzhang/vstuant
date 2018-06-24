@@ -1,0 +1,35 @@
+/*!
+ *
+ *  Project:  GLYPHICONS HALFLINGS
+ *  Author:   Jan Kovarik - www.glyphicons.com
+ *  Twitter:  @jankovarik
+ *
+ */
+.halflings-icon {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  line-height: 14px;
+  vertical-align: text-top;
+  background-image: url(../img/glyphicons_halflings.svg);
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  vertical-align: top;
+  *display: inline;
+  *zoom: 1;
+  *margin-right: .3em;
+}
+.halflings-icon.user {
+  background-position: -168px 0;
+}
+.halflings-icon.cog {
+  background-position: -432px 0;
+}
+.halflings-icon.home {
+  background-position: 0 -24px;
+}
+.halflings-icon.lock {
+  background-position: -287px -24px;
+}
+
+/* Localized */

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.mapper.UserMessageMapper">
+  <resultMap id="BaseResultMap" type="com.study.model.UserMessage">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="media_id" jdbcType="INTEGER" property="mediaId" />
+  </resultMap>
+<!--  <select id="queryByUid" parameterType="int" resultType="com.study.bean.UserMessageBean">
+    SELECT t.media_id as mediaId,t.uid,m.`name` as mediaName from user_message t  LEFT JOIN media m on t.media_id=m.id and t.uid=#{uid}
+  </select>-->
+  <insert id="batchInsert" parameterType="com.study.model.UserMessage">
+    INSERT INTO user_message
+     (uid, media_id)
+     VALUES
+    <foreach collection="list" item="item" index="index" open="" close="" separator=",">
+      (#{item.uid},#{item.mediaId})
+    </foreach>
+  </insert>
+  <delete id="deleteByUid" parameterType="int">
+    delete from user_message where uid=#{uid}
+  </delete>
+</mapper>

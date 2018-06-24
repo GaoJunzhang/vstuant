@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.mapper.MediaMapper">
+  <resultMap id="BaseResultMap" type="com.study.model.Media">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="sumplaycount" jdbcType="INTEGER" property="sumplaycount" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="enable" jdbcType="SMALLINT" property="enable" />
+  </resultMap>
+  <select id="findMediaByName" resultType="com.study.model.Media">
+      	SELECT *
+		FROM media where name = #{name}
+  </select>
+  <insert id="insertMedia" keyProperty="id" parameterType="com.study.model.Media" useGeneratedKeys="true">
+    insert into media(name,uid,createtime)
+    values(#{name},#{uid},#{createtime})
+</insert>
+  <select id="totalMedia" resultType="java.lang.Integer">
+    select count(id) from media;
+  </select>
+  <select id="queryMediaByUid" parameterType="int" resultType="com.study.model.Media">
+    SELECT t.id,t.name,t.createtime from media t where t.id in (SELECT t1.media_id from user_message t1 where t1.uid=#{uid})
+  </select>
+<!--  &lt;update id="updateMedia" parameterType="com.study.model.Media"&gt;
+        update media set playcount=#{playcount} where id=#{id}
+&lt;/update&gt;-->
+<!--&lt;select id="sumPalyCount" resultType="java.lang.Integer"&gt;
+  select sum(playcount) from media where uid=#{uid}
+&lt;/select&gt;-->
+</mapper>

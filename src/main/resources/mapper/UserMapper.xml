@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="com.study.model.User">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="enable" jdbcType="INTEGER" property="enable"/>
+        <result column="sumcount" jdbcType="INTEGER" property="sumcount"/>
+        <result column="position" jdbcType="VARCHAR" property="position"/>
+        <result column="create_time" jdbcType="VARCHAR" property="createTime"/>
+        <result column="login_time" jdbcType="TIMESTAMP" property="loginTime"/>
+        <result column="logout_time" jdbcType="TIMESTAMP" property="logoutTime"/>
+        <result column="realyname" jdbcType="VARCHAR" property="realyname"/>
+        <result column="is_limit" jdbcType="SMALLINT" property="isLimit"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+
+    </resultMap>
+    <update id="batchUpdateCount" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            update user
+            <set>sumcount=#{item.sumcount,jdbcType=INTEGER}</set>
+            where id=#{item.id,jdbcType=INTEGER}
+        </foreach>
+    </update>
+    <update id="updateLimit" parameterType="com.study.model.User">
+        update user <set>is_limit=#{isLimit}</set> where id=#{id}
+    </update>
+    <update id="updateLoggerByUname" parameterType="com.study.model.User">
+            update user
+        <if test="loginTime!=null">
+            <set>login_time=#{loginTime}</set>
+        </if>
+        <if test="logoutTime!=null">
+            <set>logout_time=#{logoutTime}</set>
+        </if>
+            where username=#{username}
+    </update>
+    <update id="updateRemark" parameterType="com.study.model.User">
+        update user
+        <set>remark=#{remark}</set>
+        where id=#{id}
+    </update>
+    <select id="totalUser" resultType="java.lang.Integer">
+        select count(id) from user;
+    </select>
+</mapper>
